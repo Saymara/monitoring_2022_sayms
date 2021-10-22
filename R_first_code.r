@@ -18,3 +18,31 @@ plot (water, fishes)
 streams  <- data.frame(water, fishes)  
 streams
 
+#From now on we are going to import and/or export data!
+#setwd for Windows
+setwd("C:/lab/")
+ 
+ #Let's export our tables
+write.table(streams, file="my_first_table.txt")
+
+#Some colleagues did send us a table in R, how to import it in R?
+read.table("my_first_table.txt")
+
+#Let's assign it to an object inside R
+saymstable <- read.table("my_first_table.txt")
+
+#The first statistics for lazy beautiful people
+summary(saymstable)
+
+#Marta does not like water
+#Marta wants to get info only on fishes
+summary(saymstable$fishes)
+
+#histogram
+hist(saymstable$fishes)
+hist(saymstable$water)
+
+
+
+
+
