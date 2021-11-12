@@ -95,8 +95,43 @@ plotRGB(l2011, r=3, g=2, b=4, stretch="Lin")  # false colours
 par(mfrow=c(2,2))
 plotRGB(l2011, r=3, g=2, b=1, stretch="Lin") # natural colours
 plotRGB(l2011, r=4, g=3, b=2, stretch="Lin") # false colours
-plotRGB(l2011, r=3, g=4, b=2, stretch="Lin")  # false colours
-plotRGB(l2011, r=3, g=2, b=4, stretch="Lin")  # false colours
+plotRGB(l2011, r=3, g=4, b=2, stretch="Lin") # false colours
+plotRGB(l2011, r=3, g=2, b=4, stretch="Lin") # false colours
+
+
+
+# final day at this tropical forest reserve
+
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="Hist") # sort of an integral instead of a line
+
+
+# now we are going to import the data from 1988
+
+l1988 <- brick("p224r63_1988.grd")
+l1988
+
+par(mfrow=c(2,1))
+plotRGB(l1988, r=4, g=3, b=2, stretch="Lin")  
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")  
+
+
+# put the NIR in the blue channel
+
+par(mfrow=c(2,1))
+plotRGB(l1988, r=2, g=3, b=4, stretch="Lin")  
+plotRGB(l2011, r=2, g=3, b=4, stretch="Lin")  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
