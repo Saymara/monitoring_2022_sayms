@@ -95,3 +95,6 @@ plotRGB(EN, r=1 ,g=7,  b=13, stretch="lin") # in the r band are represented all 
 
 # pairs
 pairs(EN)
+     
+# direct import
+     
