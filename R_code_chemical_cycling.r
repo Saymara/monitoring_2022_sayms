@@ -92,9 +92,56 @@ plot(EN$EN_0001, col=cl)
 
 plotRGB(EN, r=1 ,g=7,  b=13, stretch="lin") # in the r band are represented all the areas with highest amounts of NO2 in January and so on
 
+     
+   ------ # day 2 -------
 
 # pairs
 pairs(EN)
      
 # direct import
+     
+library(raster)
+setwd("C:/lab/en/")  
+     
+     
+# importing all the data together with the lapply function
+
+  rlist <-list.files(pattern="EN")  # creating a list of the data (files/images) we want to import
+  rlist
+  
+     
+  list_rast <- lapply(rlist,raster)
+         
+   list_rast 
+     
+   EN_stack <- stack(list_rast)
+   EN_stack
+     
+     cl <- colorRampPalette(c('red','orange','yellow'))(100) 
+     plot(EN_stack,col=cl)
+     
+     # exercise: plot only the first image of the stack
+     plot(EN_stack$EN_0001,col=cl)
+     
+     
+     
+     # difference
+     
+     ENdif <- EN_stack$EN_0001 - EN_stack$EN_0013
+     cldif <- colorRampPalette(c('blue','white','red'))(100) 
+     plot(ENdif, col=cldif)
+   
+  # automated processing source function
+     
+     source("r_script.txt")
+     
+     
+     
+     
+     
+     
+     
+
+     
+     
      
