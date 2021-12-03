@@ -134,8 +134,16 @@ setwd("C:/lab/en/")
   # automated processing source function
      
      source("r_script.txt")
+  
+     ---------------------------------------------------
      
      
+     
+     
+     
+     
+     
+   
      
      
      
