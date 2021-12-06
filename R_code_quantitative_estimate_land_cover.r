@@ -76,13 +76,120 @@
   proportion1992 
   
   
-   # 
    
   ggplot(proportion1992, aes(x=cover, y=prop1992, color=cover)) + geom_bar(stat="identity", fill="white")
+
+
+# day 3 (december 6)  - kind of a revision
+
+library(raster)
+library(RStoolbox) 
+library(ggplot2)
+
+setwd("C:/lab/")
+
+
+# 1 list the files available
+
+rlist <- list.files(pattern="defor")
+
+rlist
+
+list_rast <- lapply(rlist, brick) # lapply(x, FUN)
+
+list_rast
+
+
+l1992 <- list_rast[[1]]
+plotRGB(l1992, r=1, g=2, b=3, stretch="lin")
+
+l1992c <- unsuperClass(l1992, nClasses=2) # unsuperClass(x, nClasses)
+
+
+plot(l1992c$map)
+
+# value 2 = agricultural areas and water
+# value 1 = forests
+
+freq(l1992c$map)
+
+total <- 342726
+
+#  value  count
+# [1,]     1 306470
+# [2,]     2  34822
+
+
+propagri<- 34822/total
+propforest<- 306470/total
+
+
+# build a dataframe (table)
+
+cover <- c("Agriculture", "Forest")
+prop1992 <- c(propagri, propforest)
+
+proportion1992  <- data.frame(cover,prop1992)
+
+-----------------------------------------------
+
+l2006 <- list_rast[[2]]
+
+l2006c <- unsuperClass(l2006, nClasses=2) # unsuperClass(x, nClasses) 
+
+l2006c
+
+freq(l2006c$map)
+#   value  count
+# [1,]     1 178304
+# [2,]     2 164422
+
+
+
+
+total <- 3342726 
+
+propagri<- 178304/total
+
+propaforest <- 3164422/total
+
+cover <- c("Agriculture", "Forest")
+prop2006 <- c(propagri, propforest)
+
+
+proportion2006 <- data.frame(cover, prop2006)
+
+proportion <- data.frame(cover, prop1992, prop2006)
+
+
+--------------------------------
+
+library(gridExtra)
+
+# plotting all together
+
+p1 <- ggplot(proportion1992, aes(x=cover, y=prop1992, color=cover)) + geom_bar(stat="identity", fill="white")
+p2 <- ggplot(proportion, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white")
+ 
+grid.arrange(p1, p2, nrows=1)
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
    
-   
-   
+ 
    
    
   
