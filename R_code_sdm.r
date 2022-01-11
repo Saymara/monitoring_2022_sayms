@@ -64,7 +64,23 @@ points(presences, pch=19)
 
 plot(preds$vegetation, col=cl)
 points(presences, pch=19)
+  
 
+---------------------- \\ --------------- || ------------------- // ------------------------ || --------------------- \\ --------------- || ------------------- // ------------------------
 
- 
+# day 2 (11 - 1 - 2021)
+
+setwd("C:/lab/")
+source("R_code_source_sdm.r")   # this function allows us to import data from our working directory (lab folder) into R
+
+# in the theoretical slides of SDMs we sghuld use individuals
+preds
+
+# these are the predictors: elevation, precipitation, temperature, vegetation
+
+# Let's explain to the model whar are the traning and and predictors data
+datasdm <- sdmData(train=species, predictors=preds)
+datasdm
+
+m1 <- sdm(Occurrence~temperature+elevation+precipitation+vegetation, data=datasdm, methods="glms")
 
