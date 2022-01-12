@@ -84,7 +84,7 @@ preds
 datasdm <- sdmData(train=species, predictors=preds) 
 datasdm
 
-m1 <- sdm(Occurrence~temperature+elevation+precipitation+vegetation, data=datasdm, method="glms")
+m1 <- sdm(Occurrence ~ elevation + precipitation + temperature + vegetation, data=datasdm, methods = "glm")
 
 #  prediction: map probability
 p1 <- predict(m1, newdata=preds)
