@@ -187,10 +187,14 @@ proportion_final
 
 # ploting all together:
 
-#p1 <- ggplot(proportion1992, aes(x=cover, y=prop1992, color=cover)) + geom_bar(stat="identity", fill="white")    # plot for 1992
-#p2 <- ggplot(proportion2006, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white")    # plot for 2006
- 
+install.packages("gridExtra") 
 library(gridExtra)
+
+p1 <- ggplot(proportion_final, aes(x=cover, y=prop1992, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0,1)
+
+p2 <- ggplot(proportion_final, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0,1)
+
+
 
 plot_final <- grid.arrange(p1, p2, nrows=1)   # "grid.arrange" stands for putting the graphs above all together (in the same multiframe) choosing a number n of rows/columns)
  
