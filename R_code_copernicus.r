@@ -7,7 +7,7 @@ library(raster)
 library(ggplot2)
 library(patchwork)
 library(viridis)
-
+library(patchwork)
 # Set the working directory
 
 setwd("C:/lab//copernicus/")  # the data in this case in stored in a specificaly file within the lab folder called "copernicus"
@@ -56,25 +56,85 @@ ggtitle("cividis palette")
 
 # importing all the data together with the lapply function
 
-rlist <- list.files(pattern="LST10")      # "list.files" stands for creating a  list of files with the indicated pattern in the directory.
+rlist <- list.files(pattern="LST10")      # "list.files" stands for creating a list of all the files that have the indicated pattern from our directory.
 
 rlist
 
-# [1] "c_gls_LST10-TCI_202201010000_GLOBE_GEO_V2.1.1.nc" - result
+[1] "c_gls_LST10-TCI_202101110000_GLOBE_GEO_V2.1.1.nc"  ; [2] "c_gls_LST10-TCI_202201010000_GLOBE_GEO_V2.1.1.nc"  # results (generated files)
 
-list_rast <- lapply(rlist, raster)  # returns a list where each element of which is the result of applying "raster" (function) to the corresponding element of rlist (object)
+list_rast <- lapply(rlist, raster)  # returns a list where each element is the result of applying "raster" (function) to the corresponding element of rlist (object)
 list_rast
 
-temperaturestack <- stack(list_rast)  # the stack function "compilates" all the info from the object in one list
+temperaturestack <- stack(list_rast)  # the stack function "compilates" all the info from the object in only one list
 temperaturestack
 
+temp_21 <- temperaturestack$Fraction.of.Valid.Observations.1
+temp_22 <- temperaturestack$Fraction.of.Valid.Observations.2 
 
-temp_01 <- temperaturestack$Fraction.of.Valid.Observations 
 
 ggplot() +
-geom_raster(temp_01, mapping = aes(x=x, y=y, fill=Fraction.of.Valid.Observations)) +
+geom_raster(temp_21, mapping = aes(x=x, y=y, fill=Fraction.of.Valid.Observations.1)) +
+scale_fill_viridis(option="viridis") +ggtitle("2021 temperature image")
+
+ggplot() + 
+geom_raster(temp_22, mapping = aes(x=x, y=y, fill=Fraction.of.Valid.Observations.2)) +
+scale_fill_viridis(option="viridis") +ggtitle("2022 temperature image")
+ 
+# plotting them together
+
+p1 <- ggplot() +
+geom_raster(temp_21, mapping = aes(x=x, y=y, fill=Fraction.of.Valid.Observations.1)) +
 scale_fill_viridis(option="viridis") +
-ggtitle("Sayms_temp_code!")
+ggtitle("2021 temp image")
+
+p2 <- ggplot() +
+geom_raster(temp_22, mapping = aes(x=x, y=y, fill=Fraction.of.Valid.Observations.2)) +
+scale_fill_viridis(option="viridis") +
+ggtitle("2022 temp image")
+
+p1/p2  # final plot with the 2 images
+
+--------------------------------------------_-----------------------_-----------------------------------_---------------------------------------
+
+# what if we wanna zoom  our image into a certain place?
+# we can crop the image on a certain area!!
+
+
+# longitude from -20 to 60
+# latitude from -40 to 40
+
+ext <- c(-20, 60, -40, 40)
+
+stack_cropped <- crop(temperaturestack, ext)    # this will crop the whole stack
+
+temp_21_cv <- crop(temp_21, ext)
+temp_22_cv <- crop(temp_22, ext)
+
+plot(temp_21_cv)
+
+
+# now let's patch the new cropped images together!
+
+p1 <- 
+ggplot() +
+geom_raster(temp_21_africa, mapping = aes(x=x, y=y, fill=Fraction.of.Valid.Observations.1)) +
+scale_fill_viridis(option="viridis") +
+ggtitle(" January 2021 africa's temperature image")
+
+p2 <- 
+ggplot() +
+geom_raster(temp_22_africa, mapping = aes(x=x, y=y, fill=Fraction.of.Valid.Observations.2)) +
+scale_fill_viridis(option="viridis") +
+ggtitle(" January 2022 africa's temperature image")
+
+
+
+
+
+
+
+
+
 
 
 
