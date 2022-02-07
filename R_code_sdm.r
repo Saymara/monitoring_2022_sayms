@@ -9,11 +9,11 @@ library(rgdal) # species
 
 # species data 
 
-file <- system.file("external/species.shp", package="sdm")  # this function is going to make the list with the data inside the package we're using
+file <- system.file("external/species.shp", package="sdm")  # this function is going to make the list with the files(data) inside the package we're using (sdm)
 
 file
 
-species <- shapefile(file) # the shapefile function corresponds exatcly to the raster function for raster files (it allows us to import data)
+species <- shapefile(file) # the shapefile function corresponds exatcly to the raster function for raster files but with shapefiles (that means it allows us to import data as well)
 species
 
 species$Occurrence # looking at the occurrences
@@ -27,7 +27,7 @@ species[species$Occurrence == 1,]
 presences <- species[species$Occurrence == 1,]
 absences <- species[species$Occurrence == 0,]
 
-# plot! 
+# plotting our data!!
  
 plot(species, pch=19)
 lot(presences, pch=19, col="blue")
