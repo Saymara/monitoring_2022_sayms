@@ -1,4 +1,4 @@
-# We're going to analyse the Land Surface Temperature variation in the last 5 years (from 2015 to 2021)
+# We're about to analyse the Land Surface Temperature variation in the last 5 years (from 2015 to 2021)
 
 
 library(raster)
@@ -74,9 +74,11 @@ ggtitle("Land surface Temperature - 2021")
 
 # plotting them together to compare!!
 
+
 big_plot <- g1 / g2 / g3/ g4 / g5
 
 pdf("big_plot.pdf")
+
 
 
 
