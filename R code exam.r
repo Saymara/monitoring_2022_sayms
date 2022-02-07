@@ -78,7 +78,7 @@ ggtitle("Land surface Temperature - 2021")
 big_plot <- g1 / g2 / g3/ g4 / g5
 
 pdf("big_plot.pdf")
-
+big_plot <- g1 / g2 / g3/ g4 / g5
 
 
 
