@@ -9,7 +9,7 @@ library(rgdal) # species
 
 # species data 
 
-file <- system.file("external/species.shp", package="sdm")  # this function is going to make the list with the data inside the package ware using
+file <- system.file("external/species.shp", package="sdm")  # this function is going to make the list with the data inside the package we're using
 
 file
 
