@@ -34,5 +34,41 @@ albhstack <- stack(albh_rast)
 albhstack
 
 
-albh_1999 <- lststack$Fraction.of.Valid.Observations.1
-albh_2020 <- lststack$Fraction.of.Valid.Observations.2
+albh_1999 <- albhstack$Broadband.hemispherical.albedo.over.total.spectrum.1
+albh_2020 <- albhstack$Broadband.hemispherical.albedo.over.total.spectrum.2
+
+
+
+# using the ggplot function to plot all the files with the "viridis" library
+
+ g1 <- ggplot() + 
+geom_raster(albh_1999 , mapping = aes(x=x, y=y, fill=Broadband.hemispherical.albedo.over.total.spectrum.1)) +
+scale_fill_viridis(option="magma") + 
+ggtitle("Surface Albedo - 1999")
+
+g2 <- ggplot() + 
+geom_raster(albh_2020 , mapping = aes(x=x, y=y, fill=Broadband.hemispherical.albedo.over.total.spectrum.2)) +
+scale_fill_viridis(option="magma") + 
+ggtitle("Surface Albedo - 2000")
+
+
+g1 / g2
+
+
+# plotting the graphs for comparison
+
+cl <- colorRampPalette(c("light green"," light blue","pink","yellow"))(100)
+plot(albh_1999, col=cl)
+
+
+
+
+
+
+
+
+
+
+
+
+
