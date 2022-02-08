@@ -1,4 +1,4 @@
-# We're about to analyse the Land Surface Temperature variation in the last 5 years (from 2015 to 2021)
+# We're about to analyse the Land Surface Temperature variation in Africa in the last 5 years (from 2015 to 2021)
 
 
 library(raster)
@@ -7,6 +7,7 @@ library(ggplot2)
 library(RStoolbox)
 library(viridis)
 library(patchwork)
+
 
 
 # setting the working directory
@@ -80,5 +81,26 @@ big_plot <- g1 / g2 / g3/ g4 / g5
 pdf("big_plot.pdf")
 big_plot <- g1 / g2 / g3/ g4 / g5
 
+
+
+# zooming in into Africa - our region of study
+
+ext <- (c(-20, 60, -40, 40))
+cl <- colorRampPalette(c("light blue","blue","yellow","orange"))(100)
+
+lst_africa_17 <- crop(lst_17, ext)    
+lst_africa_18 <- crop(lst_18, ext) 
+lst_africa_19 <- crop(lst_19, ext) 
+lst_africa_20 <- crop(lst_20, ext) 
+lst_africa_21 <- crop(lst_21, ext) 
+
+pdf("LandSurfaceTemperature.pdf")
+
+par(mfrow=c(3,2))
+plot(lst_africa_17, col= cl)
+plot(lst_africa_18, col= cl)
+plot(lst_africa_19, col= cl)
+plot(lst_africa_20, col= cl)
+plot(lst_africa_21, col= cl)
 
 
