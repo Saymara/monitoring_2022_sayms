@@ -85,8 +85,12 @@ big_plot <- g1 / g2 / g3/ g4 / g5
 
 # zooming in into Africa - our region of study
 
+# coordenates for focusing on Africa continent
+# longitude - from -20 to 60
+# latitude - from - 40 to 40
+
 ext <- (c(-20, 60, -40, 40))
-cl <- colorRampPalette(c("light blue","blue","yellow","orange"))(100)
+cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
 
 lst_africa_17 <- crop(lst_17, ext)    
 lst_africa_18 <- crop(lst_18, ext) 
@@ -96,11 +100,29 @@ lst_africa_21 <- crop(lst_21, ext)
 
 pdf("LandSurfaceTemperature.pdf")
 
+
+# plotting the data all together so we can compare them
+
 par(mfrow=c(3,2))
 plot(lst_africa_17, col= cl)
 plot(lst_africa_18, col= cl)
 plot(lst_africa_19, col= cl)
 plot(lst_africa_20, col= cl)
 plot(lst_africa_21, col= cl)
+
+
+# Analysing th results from the graphs above #
+
+# pt. 2 - relating the rising of temperature to some of the index variables #
+
+
+# with the rising of temperatures, it's expected to notice a dicrease in the "Leaf Area Indexr"
+
+# This is what we're about to analyse and try to verify!!
+
+# we're using the data from copernicus about the LAI variable regarding Africa on those years:
+
+
+
 
 
