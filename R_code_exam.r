@@ -128,7 +128,14 @@ dev.off()
 
 # setting the working directory  
 
-setwd("C:/lab//mecf/")
+library(raster)
+library(ncdf4)
+library(ggplot2)
+library(RStoolbox)
+library(viridis)
+library(patchwork)
+
+setwd("C:/lab//mecf2/")
 
 
 lailist  <- list.files(pattern="LAI") 
@@ -136,11 +143,11 @@ lailist
 
 # results:
 
-[1] "c_gls_LAI300-RT0_202101310000_GLOBE_OLCI_V1.1.1.nc"
-[2] "c_gls_LAI300_201708100000_GLOBE_PROBAV_V1.0.1.nc"  
-[3] "c_gls_LAI300_201808100000_GLOBE_PROBAV_V1.0.1.nc"  
-[4] "c_gls_LAI300_201908100000_GLOBE_PROBAV_V1.0.1.nc"  
-[5] "c_gls_LAI300_202008200000_GLOBE_PROBAV_V1.0.1.nc"  
+[1] "c_gls_LAI300_201708100000_GLOBE_PROBAV_V1.0.1.nc"
+[2] "c_gls_LAI300_201808100000_GLOBE_PROBAV_V1.0.1.nc"
+[3] "c_gls_LAI300_201908100000_GLOBE_PROBAV_V1.0.1.nc"
+[4] "c_gls_LAI300_202008200000_GLOBE_PROBAV_V1.0.1.nc"
+[5] "c_gls_LAI300_202101310000_GLOBE_OLCI_V1.1.1.nc" 
 
 lai_rast <- lapply(lailist, raster)
 lai_rast
@@ -157,12 +164,6 @@ lai_21 <- laistack$Leaf.Area.Index.333m.5
 
 
 
-# g1 <- ggplot(lai_rast) + 
-geom_raster( , mapping = aes(x=x, y=y, fill= Leaf.Area.Index.333m )) +
-scale_fill_viridis(option="magma") + 
-ggtitle(" Leaf Area Index - 2017 to 2021")
-
-
 
 ext <- (c(-20, 60, -40, 40))
 cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
@@ -177,11 +178,11 @@ lai_africa_21 <- crop(lai_21, ext)
 # plotting the LAI data graphs together!!
 
 par(mfrow=c(3,2))
-g1 <- plot(lai_africa_17, col= cl)
-g2 <- plot(lai_africa_18, col= cl)
-g3 <- plot(lai_africa_19, col= cl)
-g4 <- plot(lai_africa_20, col= cl)
-g5 <- plot(lai_africa_21, col= cl)
+g1 <- plot(lai_africa_17, col= cl, main= " Leaf Area Index Africa - 2017")
+g2 <- plot(lai_africa_18, col= cl, main= " Leaf Area Index Africa - 2018")
+g3 <- plot(lai_africa_19, col= cl, main= " Leaf Area Index Africa - 2019")
+g4 <- plot(lai_africa_20, col= cl, main= " Leaf Area Index Africa - 2020")
+g5 <- plot(lai_africa_21, col= cl, main= " Leaf Area Index Africa - 2021")
 
 
 
