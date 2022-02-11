@@ -83,35 +83,86 @@ big_plot
 dev.off()
 
 
-# zooming in into Africa - our region of study
+# zooming in into Africa and South America - our regions of study
 
-# coordenates for focusing on Africa continent
+
+# coordenates for the African continent
 # longitude - from -20 to 60
 # latitude - from - 40 to 40
 
 ext <- (c(-20, 60, -40, 40))
 cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
 
+# Africa crop
 lst_africa_17 <- crop(lst_17, ext)    
 lst_africa_18 <- crop(lst_18, ext) 
 lst_africa_19 <- crop(lst_19, ext) 
 lst_africa_20 <- crop(lst_20, ext) 
 lst_africa_21 <- crop(lst_21, ext) 
 
-pdf("LandSurfaceTemperature.pdf")
+
+
+
+# coordenates for the South American continent
+# longitude - from -80 to -25
+# latitude - from -60 to 15
+
+ext_1 <- (c(-80, -25, -60, 15))
+cl <- colorRampPalette(c("green","blue","purple","yellow", "orange"))(100)
+
+
+ # South America crop
+lst_sa_17 <- crop(lst_17, ext_1)   
+lst_sa_18 <- crop(lst_18, ext_1) 
+lst_sa_19 <- crop(lst_19, ext_1) 
+lst_sa_20 <- crop(lst_20, ext_1) 
+lst_sa_21 <- crop(lst_21, ext_1) 
+ 
+
+
+-----------------------------------------------------------------------------
+
+# plot with the global LST values for the 5 years
+
+pdf("Land Surface Temperature - Global.pdf")
+
+
+par(mfrow=c(3,2))
+p1 <- plot(lst_17, col= cl, main= "LST  2017")
+p2 <- plot(lst_18, col= cl, main= "LST  2018")
+p3 <- plot(lst_19, col= cl, main= "LST  2019")
+p4 <- plot(lst_20, col= cl, main= "LST  2020")
+p5 <- plot(lst_21, col= cl, main= "LST  2021")
+
+dev.off()
+
+
 
 
 # plotting the data all together so we can compare them in our region of interest
 
+pdf("Land Surface Temperature - Africa.pdf")
+
 par(mfrow=c(3,2))
-p1 <- plot(lst_africa_17, col= cl, main= "LST Africa 2017")
-p2 <- plot(lst_africa_18, col= cl, main= "LST Africa 2018")
-p3 <- plot(lst_africa_19, col= cl, main= "LST Africa 2019")
-p4 <- plot(lst_africa_20, col= cl, main= "LST Africa 2020")
-p5 <- plot(lst_africa_21, col= cl, main= "LST Africa 2021")
+q1 <- plot(lst_africa_17, col= cl, main= "LST Africa 2017")
+q2 <- plot(lst_africa_18, col= cl, main= "LST Africa 2018")
+q3 <- plot(lst_africa_19, col= cl, main= "LST Africa 2019")
+q4 <- plot(lst_africa_20, col= cl, main= "LST Africa 2020")
+q5 <- plot(lst_africa_21, col= cl, main= "LST Africa 2021")
 
 dev.off()
 
+
+pdf("Land Surface Temperature - South America.pdf")
+
+par(mfrow=c(3,2))
+s1 <- plot(lst_sa_17, col= cl, main= "LST South America 2017")
+s2 <- plot(lst_sa_18, col= cl, main= "LST South America 2018")
+s3 <- plot(lst_sa_19, col= cl, main= "LST South America 2019")
+s4 <- plot(lst_sa_20, col= cl, main= "LST South America 2020")
+s5 <- plot(lst_sa_21, col= cl, main= "LST South America 2021")
+
+dev.off()
 
 
 
@@ -120,7 +171,7 @@ dev.off()
 # pt. 2 - relating the variation of temperature to some of the index variables #
 
 
-# with the rising of temperatures, it's expected to notice a dicrease in the "Leaf Area Inder"
+# with the rising of temperatures, it's expected to notice a dicrease in the "NDVI"
 
 # This is what we're about to analyse and try to verify!!
 
@@ -176,16 +227,5 @@ lai_africa_21 <- crop(lai_21, ext)
 
 
 # plotting the LAI data graphs together!!
-
-par(mfrow=c(3,2))
-g1 <- plot(lai_africa_17, col= cl, main= " Leaf Area Index Africa - 2017")
-g2 <- plot(lai_africa_18, col= cl, main= " Leaf Area Index Africa - 2018")
-g3 <- plot(lai_africa_19, col= cl, main= " Leaf Area Index Africa - 2019")
-g4 <- plot(lai_africa_20, col= cl, main= " Leaf Area Index Africa - 2020")
-g5 <- plot(lai_africa_21, col= cl, main= " Leaf Area Index Africa - 2021")
-
-
-
-
 
 
