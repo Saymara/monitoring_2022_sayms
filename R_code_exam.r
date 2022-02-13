@@ -186,46 +186,51 @@ library(RStoolbox)
 library(viridis)
 library(patchwork)
 
-setwd("C:/lab//mecf2/")
+setwd("C:/lab//exam/")
 
 
-lailist  <- list.files(pattern="LAI") 
-lailist
+ndvilist  <- list.files(pattern="NDVI") 
+ndvilist
 
 # results:
 
-[1] "c_gls_LAI300_201708100000_GLOBE_PROBAV_V1.0.1.nc"
-[2] "c_gls_LAI300_201808100000_GLOBE_PROBAV_V1.0.1.nc"
-[3] "c_gls_LAI300_201908100000_GLOBE_PROBAV_V1.0.1.nc"
-[4] "c_gls_LAI300_202008200000_GLOBE_PROBAV_V1.0.1.nc"
-[5] "c_gls_LAI300_202101310000_GLOBE_OLCI_V1.1.1.nc" 
+[1] "c_gls_NDVI300_201701010000_GLOBE_PROBAV_V1.0.1.nc"
+[2] "c_gls_NDVI300_201801010000_GLOBE_PROBAV_V1.0.1.nc"
+[3] "c_gls_NDVI300_201901010000_GLOBE_PROBAV_V1.0.1.nc"
+[4] "c_gls_NDVI300_202001010000_GLOBE_PROBAV_V1.0.1.nc"
+[5] "c_gls_NDVI300_202101010000_GLOBE_PROBAV_V1.0.1.nc"
 
-lai_rast <- lapply(lailist, raster)
-lai_rast
+ndvi_rast <- lapply(ndvilist, raster)
+ndvi_rast
 
-laistack <- stack(lai_rast)  
-laistack
+ndvistack <- stack(ndvi_rast)  
+ndvistack
 
-lai_17 <- laistack$Leaf.Area.Index.333m.1
-lai_18 <- laistack$Leaf.Area.Index.333m.2
-lai_19 <- laistack$Leaf.Area.Index.333m.3
-lai_20 <- laistack$Leaf.Area.Index.333m.4
-lai_21 <- laistack$Leaf.Area.Index.333m.5
-
-
+ndvi_17 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.1
+ndvi_18 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.2
+ndvi_19 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.3
+ndvi_20 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.4
+ndvi_21 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.5
 
 
 
-ext <- (c(-20, 60, -40, 40))
+
+cut <- (c(-20, 60, -40, 40))
 cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
 
-lai_africa_17 <- crop(lai_17, ext)    
-lai_africa_18 <- crop(lai_18, ext) 
-lai_africa_19 <- crop(lai_19, ext) 
-lai_africa_20 <- crop(lai_20, ext) 
-lai_africa_21 <- crop(lai_21, ext) 
+ndvi_africa_17  <- crop(ndvi_17, cut)    
+ndvi_africa_18  <- crop(ndvi_18, cut)  
+ndvi_africa_19  <- crop(ndvi_19, cut)  
+ndvi_africa_20  <- crop(ndvi_20, cut)  
+ndvi_africa_21  <- crop(ndvi_21, cut)  
 
+# plotting the NDVI da21 graphs together!!
 
-# plotting the LAI data graphs together!!
+par(mfrow=c(3,2))
+p1 <- plot(ndvi_17, col= cl, main= "NDVI  2017")
+p2 <- plot(ndvi_18, col= cl, main= "NDVI  2018")
+p3 <- plot(ndvi_19, col= cl, main= "NDVI  2019")
+p4 <- plot(ndvi_20, col= cl, main= "NDVI  2020")
+p5 <- plot(ndvi_21, col= cl, main= "NDVI  2021")
 
 
