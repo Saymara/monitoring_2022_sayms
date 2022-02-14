@@ -189,35 +189,41 @@ library(patchwork)
 setwd("C:/lab//exam/")
 
 
-laiilist  <- list.files(pattern="") 
+lailist  <- list.files(pattern="LAI") 
 lailist
 
 # results:
 
+[1] "c_gls_LAI300-RT0_202101200000_GLOBE_OLCI_V1.1.1.nc"
+[2] "c_gls_LAI300_201708200000_GLOBE_PROBAV_V1.0.1.nc"  
+[3] "c_gls_LAI300_201807310000_GLOBE_PROBAV_V1.0.1.nc"  
+[4] "c_gls_LAI300_201908100000_GLOBE_PROBAV_V1.0.1.nc"  
+[5] "c_gls_LAI300_202008100000_GLOBE_PROBAV_V1.0.1.nc"
 
-lai_rast <- lapply(ndvilist, raster)
+lai_rast <- lapply(lailist, raster)
 lai_rast
 
 laistack <- stack(lai_rast)  
 laistack
 
-lai_17 <- laistack$
-lai_18 <- laistack$
-lai_19 <- laistack$
-lai_20 <- laistack$
-lai_21 <- laistack$
-
+lai_17 <- laistack$Leaf.Area.Index.333m.1
+lai_18 <- laistack$Leaf.Area.Index.333m.2
+lai_19 <- laistack$Leaf.Area.Index.333m.3
+lai_20 <- laistack$Leaf.Area.Index.333m.4
+lai_21 <- laistack$Leaf.Area.Index.333m.5
 
 
 
 cut <- (c(-20, 60, -40, 40))
-cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
+cl <- colorRampPalette(c("blue","green","red"))(100)
 
-lai_africa_17  <- crop(lai_17, cut)    
-lai_africa_18  <- crop(lai_18, cut)  
-lai_africa_19  <- crop(lai_19, cut)  
-lai_africa_20  <- crop(lailai_17_20, cut)  
-lai_africa_21  <- crop(lai_21, cut)  
+lai_africa_17 <- crop(lai_17, cut)
+lai_africa_18 <- crop(lai_18, cut)
+lai_africa_19 <- crop(lai_19, cut)
+lai_africa_20 <- crop(lai_20, cut)
+lai_africa_21 <- crop(lai_21, cut)
+
+
 
 # plotting the LAI graphs together!!
 
