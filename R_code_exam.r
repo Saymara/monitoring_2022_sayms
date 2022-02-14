@@ -91,8 +91,8 @@ dev.off()
 # latitude - from - 40 to 40
 
 ext <- (c(-20, 60, -40, 40))
-cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
-
+# cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
+cl <- colorRampPalette(c("blue","green","red"))(100)
 # Africa crop
 lst_africa_17 <- crop(lst_17, ext)    
 lst_africa_18 <- crop(lst_18, ext) 
@@ -168,10 +168,10 @@ dev.off()
 
 # Analysing th results from the graphs above #
 
-# pt. 2 - relating the variation of temperature to some of the index variables #
+# pt. 2 - relating the variation of temperature to some of the vegetation index variables #
 
 
-# with the rising of temperatures, it's expected to notice a dicrease in the "NDVI"
+# with the rising of temperatures, it's expected to notice a dicrease in the "LAI" values
 
 # This is what we're about to analyse and try to verify!!
 
@@ -189,28 +189,23 @@ library(patchwork)
 setwd("C:/lab//exam/")
 
 
-ndvilist  <- list.files(pattern="NDVI") 
-ndvilist
+laiilist  <- list.files(pattern="") 
+lailist
 
 # results:
 
-[1] "c_gls_NDVI300_201701010000_GLOBE_PROBAV_V1.0.1.nc"
-[2] "c_gls_NDVI300_201801010000_GLOBE_PROBAV_V1.0.1.nc"
-[3] "c_gls_NDVI300_201901010000_GLOBE_PROBAV_V1.0.1.nc"
-[4] "c_gls_NDVI300_202001010000_GLOBE_PROBAV_V1.0.1.nc"
-[5] "c_gls_NDVI300_202101010000_GLOBE_PROBAV_V1.0.1.nc"
 
-ndvi_rast <- lapply(ndvilist, raster)
-ndvi_rast
+lai_rast <- lapply(ndvilist, raster)
+lai_rast
 
-ndvistack <- stack(ndvi_rast)  
-ndvistack
+laistack <- stack(lai_rast)  
+laistack
 
-ndvi_17 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.1
-ndvi_18 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.2
-ndvi_19 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.3
-ndvi_20 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.4
-ndvi_21 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.5
+lai_17 <- laistack$
+lai_18 <- laistack$
+lai_19 <- laistack$
+lai_20 <- laistack$
+lai_21 <- laistack$
 
 
 
@@ -218,19 +213,19 @@ ndvi_21 <- ndvistack$Normalized.Difference.Vegetation.Index.333M.5
 cut <- (c(-20, 60, -40, 40))
 cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
 
-ndvi_africa_17  <- crop(ndvi_17, cut)    
-ndvi_africa_18  <- crop(ndvi_18, cut)  
-ndvi_africa_19  <- crop(ndvi_19, cut)  
-ndvi_africa_20  <- crop(ndvi_20, cut)  
-ndvi_africa_21  <- crop(ndvi_21, cut)  
+lai_africa_17  <- crop(lai_17, cut)    
+lai_africa_18  <- crop(lai_18, cut)  
+lai_africa_19  <- crop(lai_19, cut)  
+lai_africa_20  <- crop(lailai_17_20, cut)  
+lai_africa_21  <- crop(lai_21, cut)  
 
-# plotting the NDVI da21 graphs together!!
+# plotting the LAI graphs together!!
 
 par(mfrow=c(3,2))
-p1 <- plot(ndvi_17, col= cl, main= "NDVI  2017")
-p2 <- plot(ndvi_18, col= cl, main= "NDVI  2018")
-p3 <- plot(ndvi_19, col= cl, main= "NDVI  2019")
-p4 <- plot(ndvi_20, col= cl, main= "NDVI  2020")
-p5 <- plot(ndvi_21, col= cl, main= "NDVI  2021")
+p1 <- plot(lai_17, col= cl, main= "LAI  2017")
+p2 <- plot(lai_18, col= cl, main= "LAI  2018")
+p3 <- plot(lai_19, col= cl, main= "LAI  2019")
+p4 <- plot(lai_20, col= cl, main= "LAI  2020")
+p5 <- plot(lai_21, col= cl, main= "LAI  2021")
 
 
