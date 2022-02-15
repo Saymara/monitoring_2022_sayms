@@ -97,6 +97,7 @@ cl <- colorRampPalette(c("blue","green","red"))(100)  # ColorRampPalette in the 
 
 
 # Africa crop
+
 lst_africa_17 <- crop(lst_17, ext)    
 lst_africa_18 <- crop(lst_18, ext) 
 lst_africa_19 <- crop(lst_19, ext) 
@@ -140,11 +141,11 @@ q5 <- plot(lst_africa_21, col= cl, main= "LST Africa 2021")
 
 dev.off()
 
----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # Analysing th results from the graphs above #
-------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------ \\ ------------------------- || ------------------------------------------------- // -------------------
 
 # pt. 2 - relating the variation of temperature to some of the vegetation index variables #
 
@@ -167,11 +168,11 @@ library(patchwork)
 setwd("C:/lab//exam/")
 
 
-lailist  <- list.files(pattern="LAI") 
+lailist  <- list.files(pattern="LAI300") 
 lailist
 
 # results:
-[1] "c_gls_LAI300_201711200000_GLOBE_OLCI_V1.1.2.nc"  
+[1] "c_gls_LAI300_201711200000_GLOBE_PROBAV_V1.0.1.nc"  
 [2] "c_gls_LAI300_202110310000_GLOBE_PROBAV_V1.0.1.nc"
 
 
@@ -186,7 +187,7 @@ lai_21 <- laistack$Leaf.Area.Index.333m.2
 
 
 
-cut <- (c(-20, 60, -40, 40)
+cut <- (c(-20, 60, -40, 40))
 cl <- colorRampPalette(c("navajowhite","yellow","yellowgreen", "darkgreen"))(100)
         
 # Africa crop:       
@@ -211,15 +212,28 @@ par(mfrow=c(2,1))
 s1 <- plot(lai_africa_17, col= cl, main= "LAI Africa -  2017")
 s2 <- plot(lai_africa_21, col= cl, main= "LAI Africa -  2021")
 
+
+
 # Analysing the data by their histograms:
+
         
-par(mfrow=c(2,1))  
+pdf("HISTOGRAMS COMPARING the 1st  and last year's LAI.pdf")        
+
+par(mfrow=c(1,2)) 
 hist(lai_africa_17)
 hist(lai_africa_21)
 
+dev.off()
+        
         
  # Linear Regression:
 
+
+plot(laistack, xlim=(c(12500,15000)), ylim=(c(12500,15000)))
+abline(0,1, col="red")
+
+
+        
 
 
 
