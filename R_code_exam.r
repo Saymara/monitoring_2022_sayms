@@ -1,5 +1,5 @@
 # pt.1
-# We're about to analyse the Land Surface Temperature variation in Africa in the last 5 years (from 2015 to 2021)
+# We're about to analyse the Land Surface Temperature variation in Africa in the last 5 years (from 2017 to 2021)
 
 
 library(raster)
@@ -16,7 +16,7 @@ setwd("C:/lab//mecf/")
 
 
 # importing all the data downloaded from Copernicus together with the lapply function
-# first of all, once we have more than one data in our directory, let's create a list with all the files downloaded using the "list.files" function
+# first of all, once we have more than one dataset in our directory, let's create a list with all the files downloaded using the "list.files" function
 
 lstlist  <- list.files(pattern="LST10") 
 lstlist
@@ -229,11 +229,10 @@ dev.off()
  # Linear Regression:
 
 
-plot(laistack, xlim=(c(12500,15000)), ylim=(c(12500,15000)))
+plot(laistack, xlim=(c(-150,150)), ylim=(c(-150,150)))
 abline(0,1, col="red")
 
 
-        
 
 
 
