@@ -15,7 +15,6 @@ library(patchwork)
 setwd("C:/lab//mecf/")
 
 
-# importing all the data downloaded from Copernicus together with the lapply function
 # first of all, once we have more than one dataset in our directory, let's create a list with all the files downloaded using the "list.files" function
 
 lstlist  <- list.files(pattern="LST10") 
@@ -28,7 +27,7 @@ lstlist
 [4] "c_gls_LST10-TCI_202001210000_GLOBE_GEO_V1.2.1.nc"
 [5] "c_gls_LST10-TCI_202101010000_GLOBE_GEO_V1.3.0.nc"
 
- # Now let's create a list where each element is the result of applying the "raster" function to its correspondent element in rlist (object) using the "lapply" function
+ # Now let's create a list where each element is the result of applying the "raster" function to its correspondent element in lstlist (object) using the "lapply" function
 
 lst_rast <- lapply(lstlist, raster)
 lst_rast
