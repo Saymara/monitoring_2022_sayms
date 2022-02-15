@@ -1,3 +1,4 @@
+# pt.1
 # We're about to analyse the Land Surface Temperature variation in Africa in the last 5 years (from 2015 to 2021)
 
 
@@ -83,7 +84,7 @@ big_plot
 dev.off()
 
 
-# zooming in into Africa and South America - our regions of study
+# zooming in into Africa  - our region of study
 
 
 # coordenates for the African continent
@@ -91,8 +92,8 @@ dev.off()
 # latitude - from - 40 to 40
 
 ext <- (c(-20, 60, -40, 40))
-# cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
-cl <- colorRampPalette(c("blue","green","red"))(100)
+
+cl <- colorRampPalette(c("blue","green","red"))(100)  # ColorRampPalette in the RGB scale
 
 
 # Africa crop
@@ -143,6 +144,7 @@ dev.off()
 
 
 # Analysing th results from the graphs above #
+------------------------------------------------------------------------------------
 
 # pt. 2 - relating the variation of temperature to some of the vegetation index variables #
 
@@ -170,10 +172,7 @@ lailist
 
 # results:
 [1] "c_gls_LAI300_201710310000_GLOBE_PROBAV_V1.0.1.nc"
-[2] "c_gls_LAI300_201810200000_GLOBE_PROBAV_V1.0.1.nc"
-[3] "c_gls_LAI300_201911100000_GLOBE_PROBAV_V1.0.1.nc"
-[4] "c_gls_LAI300_202007200000_GLOBE_PROBAV_V1.0.1.nc"
-[5] "c_gls_LAI300_202111200000_GLOBE_PROBAV_V1.0.1.nc"
+[2] "c_gls_LAI300_202111200000_GLOBE_OLCI_V1.1.2.nc"  
 
 
 lai_rast <- lapply(lailist, raster)
@@ -183,31 +182,42 @@ laistack <- stack(lai_rast)
 laistack
 
 lai_17 <- laistack$Leaf.Area.Index.333m.1
-lai_18 <- laistack$Leaf.Area.Index.333m.2
-lai_19 <- laistack$Leaf.Area.Index.333m.3
-lai_20 <- laistack$Leaf.Area.Index.333m.4
-lai_21 <- laistack$Leaf.Area.Index.333m.5
+lai_21 <- laistack$Leaf.Area.Index.333m.2
 
 
 
 cut <- (c(-20, 60, -40, 40))
-cl <- colorRampPalette(c("blue","green","red"))(100)
+#cl <- colorRampPalette(c("blue","green","red"))(100) 
 
+cl <- colorRampPalette(c("navajowhite","yellow","yellowgreen", "darkgreen"))(100)
 lai_africa_17 <- crop(lai_17, cut)
-lai_africa_18 <- crop(lai_18, cut)
-lai_africa_19 <- crop(lai_19, cut)
-lai_africa_20 <- crop(lai_20, cut)
 lai_africa_21 <- crop(lai_21, cut)
 
 
 
 # plotting the LAI graphs together!!
 
-par(mfrow=c(3,2))
-p1 <- plot(lai_17, col= cl, main= "LAI  2017")
-p2 <- plot(lai_18, col= cl, main= "LAI  2018")
-p3 <- plot(lai_19, col= cl, main= "LAI  2019")
-p4 <- plot(lai_20, col= cl, main= "LAI  2020")
-p5 <- plot(lai_21, col= cl, main= "LAI  2021")
+par(mfrow=c(2,1))
+k1 <- plot(lai_17, col= cl, main= "LAI  2017")
+k2 <- plot(lai_21, col= cl, main= "LAI  2021")
+
+
+# Africa crop:
+
+par(mfrow=c(2,1))
+s1 <- plot(lai_africa_17, col= cl, main= "LAI Africa -  2017")
+s2 <- plot(lai_africa_21, col= cl, main= "LAI Africa -  2021")
+
+# Analysing the data by their histograms:
+
+hist(lai_africa_17)
+hist(lai_africa_21)
+
+# Regression:
+
+
+
+
+
 
 
