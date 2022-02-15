@@ -147,7 +147,7 @@ dev.off()
 # Analysing th results from the graphs above #
 ------------------------------------------------------------------------------------ \\ ------------------------- || ------------------------------------------------- // -------------------
 
-# pt. 2 - relating the variation of temperature to some of the vegetation index variables #
+# pt. 2 - relating the variation of temperature to one of the vegetation index variables #
 
 
 # with the rising of temperatures, it's expected to notice a dicrease in the "LAI" values
@@ -226,14 +226,12 @@ hist(lai_africa_21)
 dev.off()
         
         
- # Linear Regression:
+ # Linear Regression Graph for 2017 and 2021:
 
 
-plot(laistack, xlim=(c(-150,150)), ylim=(c(-150,150)))
+
+plot(laistack$Leaf.Area.Index.333m.1,laistack$Leaf.Area.Index.333m.2)
 abline(0,1, col="red")
-
-
-
 
 
 
