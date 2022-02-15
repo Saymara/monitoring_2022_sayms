@@ -171,8 +171,8 @@ lailist  <- list.files(pattern="LAI")
 lailist
 
 # results:
-[1] "c_gls_LAI300_201710310000_GLOBE_PROBAV_V1.0.1.nc"
-[2] "c_gls_LAI300_202111200000_GLOBE_OLCI_V1.1.2.nc"  
+[1] "c_gls_LAI300_201711200000_GLOBE_OLCI_V1.1.2.nc"  
+[2] "c_gls_LAI300_202110310000_GLOBE_PROBAV_V1.0.1.nc"
 
 
 lai_rast <- lapply(lailist, raster)
@@ -186,10 +186,10 @@ lai_21 <- laistack$Leaf.Area.Index.333m.2
 
 
 
-cut <- (c(-20, 60, -40, 40))
-#cl <- colorRampPalette(c("blue","green","red"))(100) 
-
+cut <- (c(-20, 60, -40, 40)
 cl <- colorRampPalette(c("navajowhite","yellow","yellowgreen", "darkgreen"))(100)
+        
+# Africa crop:       
 lai_africa_17 <- crop(lai_17, cut)
 lai_africa_21 <- crop(lai_21, cut)
 
@@ -197,23 +197,28 @@ lai_africa_21 <- crop(lai_21, cut)
 
 # plotting the LAI graphs together!!
 
+pdf(" LAI Global.pdf")  
+        
 par(mfrow=c(2,1))
 k1 <- plot(lai_17, col= cl, main= "LAI  2017")
 k2 <- plot(lai_21, col= cl, main= "LAI  2021")
+        
+dev.off()
 
-
-# Africa crop:
+# plotting the values of our variable for our region of study (Africa):
 
 par(mfrow=c(2,1))
 s1 <- plot(lai_africa_17, col= cl, main= "LAI Africa -  2017")
 s2 <- plot(lai_africa_21, col= cl, main= "LAI Africa -  2021")
 
 # Analysing the data by their histograms:
-
+        
+par(mfrow=c(2,1))  
 hist(lai_africa_17)
 hist(lai_africa_21)
 
-# Regression:
+        
+ # Linear Regression:
 
 
 
