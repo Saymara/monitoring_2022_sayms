@@ -31,8 +31,8 @@
    
    # defor: NIR 1, red 2, green 3
    
-   plotRGB(list_rast[[1]], r=1, g=2, b=3, stretch = "lin")  # plotRGB stands for 
-   
+   plotRGB(list_rast[[1]], r=1, g=2, b=3, stretch = "lin")  # plotRGB stands for  making true (or false) color images from Landsats satellite images
+  
    l1992 <- list_rast[[1]]
    plotRGB(l1992 , r=1, g=2, b=3, stretch = "lin")
    
