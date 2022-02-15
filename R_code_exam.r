@@ -93,6 +93,8 @@ dev.off()
 ext <- (c(-20, 60, -40, 40))
 # cl <- colorRampPalette(c("green","blue","purple","pink", "yellow"))(100)
 cl <- colorRampPalette(c("blue","green","red"))(100)
+
+
 # Africa crop
 lst_africa_17 <- crop(lst_17, ext)    
 lst_africa_18 <- crop(lst_18, ext) 
@@ -101,22 +103,7 @@ lst_africa_20 <- crop(lst_20, ext)
 lst_africa_21 <- crop(lst_21, ext) 
 
 
-
-
-# coordenates for the South American continent
-# longitude - from -80 to -25
-# latitude - from -60 to 15
-
-ext_1 <- (c(-80, -25, -60, 15))
-cl <- colorRampPalette(c("green","blue","purple","yellow", "orange"))(100)
-
-
- # South America crop
-lst_sa_17 <- crop(lst_17, ext_1)   
-lst_sa_18 <- crop(lst_18, ext_1) 
-lst_sa_19 <- crop(lst_19, ext_1) 
-lst_sa_20 <- crop(lst_20, ext_1) 
-lst_sa_21 <- crop(lst_21, ext_1) 
+ 
  
 
 
@@ -152,18 +139,7 @@ q5 <- plot(lst_africa_21, col= cl, main= "LST Africa 2021")
 
 dev.off()
 
-
-pdf("Land Surface Temperature - South America.pdf")
-
-par(mfrow=c(3,2))
-s1 <- plot(lst_sa_17, col= cl, main= "LST South America 2017")
-s2 <- plot(lst_sa_18, col= cl, main= "LST South America 2018")
-s3 <- plot(lst_sa_19, col= cl, main= "LST South America 2019")
-s4 <- plot(lst_sa_20, col= cl, main= "LST South America 2020")
-s5 <- plot(lst_sa_21, col= cl, main= "LST South America 2021")
-
-dev.off()
-
+---------------------------------------------------------------------------------------------------------------------------------
 
 
 # Analysing th results from the graphs above #
@@ -193,12 +169,12 @@ lailist  <- list.files(pattern="LAI")
 lailist
 
 # results:
+[1] "c_gls_LAI300_201710310000_GLOBE_PROBAV_V1.0.1.nc"
+[2] "c_gls_LAI300_201810200000_GLOBE_PROBAV_V1.0.1.nc"
+[3] "c_gls_LAI300_201911100000_GLOBE_PROBAV_V1.0.1.nc"
+[4] "c_gls_LAI300_202007200000_GLOBE_PROBAV_V1.0.1.nc"
+[5] "c_gls_LAI300_202111200000_GLOBE_PROBAV_V1.0.1.nc"
 
-[1] "c_gls_LAI300-RT0_202101200000_GLOBE_OLCI_V1.1.1.nc"
-[2] "c_gls_LAI300_201708200000_GLOBE_PROBAV_V1.0.1.nc"  
-[3] "c_gls_LAI300_201807310000_GLOBE_PROBAV_V1.0.1.nc"  
-[4] "c_gls_LAI300_201908100000_GLOBE_PROBAV_V1.0.1.nc"  
-[5] "c_gls_LAI300_202008100000_GLOBE_PROBAV_V1.0.1.nc"
 
 lai_rast <- lapply(lailist, raster)
 lai_rast
