@@ -231,7 +231,10 @@ dev.off()
 
 plot(laistack$Leaf.Area.Index.333m.1,laistack$Leaf.Area.Index.333m.2)
 abline(0,1, col="red")
+ 
 
+pairs(laistack$Leaf.Area.Index.333m.1,laistack$Leaf.Area.Index.333m.2)
+abline(0,1, col="red")
 
 
 
