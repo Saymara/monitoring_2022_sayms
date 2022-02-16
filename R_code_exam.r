@@ -132,6 +132,7 @@ dev.off()
 pdf("Land Surface Temperature - Africa.pdf")
 
 par(mfrow=c(3,2))
+
 q1 <- plot(lst_africa_17, col= cl, main= "LST Africa 2017")
 q2 <- plot(lst_africa_18, col= cl, main= "LST Africa 2018")
 q3 <- plot(lst_africa_19, col= cl, main= "LST Africa 2019")
@@ -207,10 +208,12 @@ dev.off()
 
 # plotting the values of our variable for our region of study (Africa):
 
+pdf(" LAI Africa.pdf")  
 par(mfrow=c(2,1))
 s1 <- plot(lai_africa_17, col= cl, main= "LAI Africa -  2017")
 s2 <- plot(lai_africa_21, col= cl, main= "LAI Africa -  2021")
 
+dev.off()
 
 
 # Analysing the data by their histograms:
@@ -233,9 +236,9 @@ plot(laistack$Leaf.Area.Index.333m.1,laistack$Leaf.Area.Index.333m.2)
 abline(0,1, col="red")
  
 
+# Using the pairs function so we can see all the statistics graphs and also the correlation coeficient
 pairs(laistack$Leaf.Area.Index.333m.1,laistack$Leaf.Area.Index.333m.2)
 abline(0,1, col="red")
-
 
 
 
